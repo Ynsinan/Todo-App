@@ -1,0 +1,154 @@
+$box-sizing-color: #e3e4e9;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dela Gothic One', cursive;
+}
+.App{
+    height: 100vh;
+    overflow: hidden;
+    background-color: #2d3436;
+    .login-container{
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50em;
+      height: 30em;
+      box-shadow: -1px -1px 14px 9px $box-sizing-color; 
+      height: 50%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .name-container{
+        z-index: 1;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        input{
+          padding: 1rem;
+          width: 15rem;
+          height: 2rem;
+          font-size: 1rem;
+          text-transform: uppercase;
+        }
+      }
+      .lastName-container{
+        z-index: 1;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        input{
+          padding: 1rem;
+          width: 15rem;
+          height: 2rem;
+          font-size: 1rem;
+          text-transform: uppercase;
+        }
+      }
+      button{
+        height: 2rem;
+        width: 6rem;
+      }
+    }
+    .todo-container{
+      position: absolute;
+      top:50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .name-tag{
+        color: white;
+        font-size: 2rem;
+      }
+      .input-area{
+        width: 80%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        form{
+          display: flex;
+          justify-content: space-between;
+          input{
+          width: 100%;
+          height:2rem;
+          }
+          button{
+            height: 2rem;
+            width: 2rem;
+            border: none;
+          }
+        }
+       
+      }
+      .task-area{
+        box-shadow: rgb(255, 255, 255) 0px 20px 30px -10px;
+        
+        width: 50rem;
+        max-height:35rem;
+        overflow-y: auto;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 3rem;
+        .task{
+          
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 2rem;
+          height: 3rem;
+          background-color: purple;
+          border-radius: 2rem;
+          color: white;
+          margin-bottom: 1rem;
+          .task-title{
+            font-size: 2rem;
+          }
+          .task-icons{
+            display: flex;
+            flex-direction: row;
+            .icon{
+              cursor: pointer;
+              font-size: 1.5rem;
+              margin-right: 0.5rem;
+            }
+            .tooltip{
+              position: relative;
+              display: inline-block;
+              cursor: pointer;
+              .tooltip-Text{
+                visibility: hidden;
+                position: relative;
+                position: absolute;
+                font-size: 0.8rem;
+                padding: 5px 0;
+                width: 10em;
+                background-color: #0cbaba;
+                background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+                text-align: center;
+                border-radius: 6px;
+                top: -5px;
+                right:100%;
+                z-index: 1;
+                
+                box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+              }
+              &:hover{
+                .tooltip-Text{
+                  visibility: visible;
+                }
+              }
+            }
+            
+          }
+        }
+      }
+    }
+}
