@@ -9,6 +9,7 @@ import { useLocalStorage } from '../Hooks/useLocalStorage';
 import { stateType } from '../Utils/global';
 import { useEffect } from 'react';
 import _ from 'lodash';
+import Modal from "../Components/modal";
 
 
 export default function TodoPage() {
@@ -19,13 +20,15 @@ export default function TodoPage() {
         id: v4(),
         name: "Learn",
         date: "11.23.2021",
-        hour: "09.05"
+        hour: "09.05",
+        status: false,
     }
     const item2 = {
         id: v4(),
         name: "Learn everything",
         date: "11.23.2021",
-        hour: "09.05"
+        hour: "09.05",
+        status: false,
     }
 
     const DEFAULT_TODO = {
@@ -34,34 +37,59 @@ export default function TodoPage() {
             items: [item, item2]
         }
     }
+
     const [storage, setStorage] = useLocalStorage("todo", DEFAULT_TODO);
     const [state, setState] = useState<stateType>(storage);
     const [text, setText] = useState<string | undefined>();
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const [temp, setTemp] = useState<string>("");
+    const [color, setColor] = useState<string>("green")
+
     let time = new Date();
 
     const addItem = (e: any) => {
         e.preventDefault();
-        state.todo.items.push({
-            id: v4(),
-            name: text,
-            date: time.toLocaleDateString(),
-            hour: time.toLocaleTimeString(),
-        });
-        setStorage(state);
-        setText("");
+        if (text) {
+            if (text.length < 30) {
+                if (state.todo.items.length < 9) {
+                    state.todo.items.push({
+                        id: v4(),
+                        name: text,
+                        date: time.toLocaleDateString(),
+                        hour: time.toLocaleTimeString(),
+                        status: false,
+                    });
+                } else {
+                    alert("Todo list full");
+                }
+                setStorage(state);
+                setText("");
+            } else {
+                alert("Task's name very long");
+            }
+        } else {
+            return;
+        }
     }
     const removeTask = (id: string) => {
-        console.log("asfsa");
-        console.log(id);
-
         _.map(state, (data) => {
             data.items = data.items.filter((data) => data.id !== id);
         })
         setStorage({ ...state })
-
-
-
     }
+
+    const openModal = (id: string) => {
+        setModalIsOpen(true);
+        setTemp(id);
+    }
+
+    const taskComplete = (id: number) => {
+        const newArray = [...state.todo.items];
+        newArray[id].status = !newArray[id].status;
+        setStorage({ ...state })
+        console.log(newArray);
+    }
+
     useEffect(() => {
         setState(storage);
     }, [storage])
@@ -80,7 +108,7 @@ export default function TodoPage() {
             <div className="task-area">
                 {state.todo.items.map((data, index) => {
                     return (
-                        <div className="task" key={index}>
+                        <div className="task" key={index} style={{ backgroundColor: data.status ? `${color}` : "" }}>
                             <div className="task-title">
                                 <h5>{data.name}</h5>
                             </div>
@@ -91,14 +119,18 @@ export default function TodoPage() {
                                     <span className="tooltip-Text">Was Created {data.date} / {data.hour}</span>
                                 </div>
 
-                                <FaPencilAlt className="iconPencil icon" />
-                                <AiOutlineFileDone className="iconDone icon" />
+                                <FaPencilAlt className="iconPencil icon" onClick={() => { openModal(data.id) }} />
+                                <AiOutlineFileDone className="iconDone icon" onClick={() => taskComplete(index)} />
                             </div>
                         </div>
                     )
                 })}
             </div>
-
+            {modalIsOpen && (
+                <>
+                    <Modal id={temp} state={state} setStorage={setStorage} onClose={setModalIsOpen} />
+                </>
+            )}
 
         </div>
     )
