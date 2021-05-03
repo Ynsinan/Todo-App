@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { stateType } from '../Utils/global'
+import { motion } from "framer-motion";
 type modal = {
     id: string;
     onClose: any;
@@ -33,7 +34,23 @@ export default function Modal({ id, onClose, state, setStorage }: modal) {
             </div>
             <div className="main">
                 <input className="changeInput" type="text" placeholder="Change..." onChange={(e: any) => setNewTask(e.target.value)} />
-                <button className="change-button" onClick={() => changeTask(id, newTask)}>Change</button>
+
+                <motion.button
+                    initial={{ scale: 1.5 }}
+                    exit={{ scale: 0.6 }}
+                    animate={{
+                        opacity: 1,
+                        boxShadow: "1px 1px 10px rgba(0, 0, 0, 0.7)",
+                        scale: 1
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 300
+                    }}
+                    className="change-button"
+                    onClick={() => changeTask(id, newTask)}
+                >Change</motion.button>
             </div>
         </div>
     )

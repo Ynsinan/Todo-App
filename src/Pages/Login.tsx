@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../Hooks/useInput';
 import { useLocalStorage } from '../Hooks/useLocalStorage';
+import { motion } from "framer-motion";
 
 export default function Login() {
     const INITIAL_STATE = {
@@ -30,7 +31,14 @@ export default function Login() {
     };
 
     return (
-        <div className="login-container">
+        <motion.div className="login-container"
+            initial={{ scale: 0 }}
+            animate={{ rotate: 360, scale: 1 }}
+            transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 300
+            }}>
             <div className="name-container">
                 <h4>Name</h4>
                 <input type="text" name="name" placeholder=" Enter your name" value={inputs.name} onChange={setInputs} />
@@ -39,9 +47,9 @@ export default function Login() {
                 <h4>Last Name</h4>
                 <input type="text" name="lastName" placeholder=" Enter your last name" value={inputs.lastName} onChange={setInputs} />
             </div>
-            <button onClick={onClick}>Login</button>
+            <motion.button onClick={onClick} whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}  >Login</motion.button>
 
 
-        </div>
+        </motion.div>
     )
 }
