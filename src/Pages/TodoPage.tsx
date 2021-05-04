@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { v4 } from 'uuid';
 import { useLocalStorage } from '../Hooks/useLocalStorage';
@@ -52,7 +52,7 @@ export default function TodoPage() {
     const [text, setText] = useState<string | undefined>();
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
     const [temp, setTemp] = useState<string>("");
-    const [color, setColor] = useState<string>("#1dd1a1")
+    const [color] = useState<string>("#1dd1a1")
 
     let time = new Date();
 
@@ -147,15 +147,15 @@ export default function TodoPage() {
                                 <h5>{data.name}</h5>
                             </div>
                             <div className="task-icons">
-                                <MdDeleteSweep className="iconDelete icon" onClick={() => removeTask(data.id)} />
+                                <MdDeleteSweep size={30} className="iconDelete icon" onClick={() => removeTask(data.id)} />
                                 <div className="tooltip">
-                                    <TiInfo className="iconInfo icon" />
+                                    <TiInfo size={30} className="iconInfo icon" />
                                     <span
                                         className="tooltip-Text">Was Created {data.date} / {data.hour}</span>
                                 </div>
 
-                                <FaPencilAlt className="iconPencil icon" onClick={() => { openModal(data.id) }} />
-                                <AiOutlineFileDone className="iconDone icon" onClick={() => taskComplete(index)} />
+                                <FaPencilAlt size={25} className="iconPencil icon" onClick={() => { openModal(data.id) }} />
+                                <AiOutlineFileDone size={30} className="iconDone icon" onClick={() => taskComplete(index)} />
                             </div>
                         </motion.div>
                     )

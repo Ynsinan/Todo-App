@@ -13,7 +13,9 @@ $xxl: 1040px;
 $xl: 790px;
 $l: 670px;
 $m: 560px;
+$undermsize:400px;
 $s: 340px;
+$xs:300px;
 
 
 * {
@@ -55,7 +57,7 @@ $s: 340px;
         background-size: 740px;
       }
       @media screen and (max-width:$xl){
-        background-size: 620px;
+        background-size: 640px;
       }
       @media screen and (max-width:$l){
         width: 70%;
@@ -86,6 +88,7 @@ $s: 340px;
         font-size: 1.5rem;
         margin-bottom: 1rem;
         color: $loginPageText-color;
+        text-align: center;
         
         input{
           padding: 1rem;
@@ -93,11 +96,23 @@ $s: 340px;
           height: 2.5rem;
           font-size: 1rem;
           text-transform: uppercase;
-          
+          text-align: center;
           &:focus,&:hover{
             border: none;
             outline: none;
             box-shadow: 0 1px 14px #b8c6db;
+          }
+          @media screen and (max-width:$m) {
+            width: 14rem;
+            
+          }
+          @media screen and (max-width:$s) {
+            width: 10rem;
+            
+          }
+           @media screen and (max-width:$xs) {
+            width: 10rem;
+            
           }
         }
       }
@@ -106,6 +121,8 @@ $s: 340px;
         font-size: 1.5rem;
         margin-bottom: 2rem;
         color: $loginPageText-color;
+        text-align: center;
+        
         
         input{
           padding: 1rem;
@@ -113,11 +130,24 @@ $s: 340px;
           height: 2.5rem;
           font-size: 1rem;
           text-transform: uppercase;
+          text-align: center;
         
           &:focus,&:hover{
             border: none;
             outline: none;
             box-shadow: 0 1px 14px #b8c6db;
+          }
+           @media screen and (max-width:$m) {
+            width: 14rem;
+            
+          }
+          @media screen and (max-width:$s) {
+            width: 10rem;
+            
+          }
+           @media screen and (max-width:$xs) {
+            width: 10rem;
+            
           }
           
         }
@@ -135,6 +165,7 @@ $s: 340px;
     }
     .todo-container{
       position: absolute;
+      width: 50%;
       top:50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -142,9 +173,35 @@ $s: 340px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width:$xxxxxxxl){
+       width: 50%;
+      }
+      @media screen and (max-width:$xxxxxxl){
+       width: 60%;
+      }
+      @media screen and (max-width:$xxxxl){
+       width: 70%;
+      }
+      @media screen and (max-width:$xxl){
+       width: 75%;
+      }
+      @media screen and (max-width:$xl){
+       width: 80%;
+      }
+      @media screen and (max-width:$l){
+       width: 85%;
+      }
       .name-tag{
         color: white;
         font-size: 2rem;
+        text-align: center;
+        text-shadow: 2px 2px 5px $main-color2;
+        @media screen and (max-width:$xxl){
+          font-size: 1.6rem;
+        }
+        @media screen and (max-width:$m){
+          font-size: 1.2rem;
+        }
       }
       .input-area{
         width: 80%;
@@ -158,6 +215,8 @@ $s: 340px;
             width: 100%;
             height:3rem;
             padding-left: 1rem;
+            font-size: 1.1rem;
+            
             border: none;
             outline: none;
             border-top-left-radius: 1em;
@@ -165,6 +224,14 @@ $s: 340px;
             &:focus,&:hover{
               transition: 1s ease-in-out;
               box-shadow: 0 1px 12px #b8c6db;
+            }
+            @media screen and (max-width:$m){
+              font-size: 0.8rem;
+              font-weight: 800;
+            } 
+            @media screen and (max-width:$s){
+              font-size: 0.5rem;
+              font-weight: bold;
             } 
           }
           button{
@@ -184,16 +251,16 @@ $s: 340px;
       }
       .task-area{
         // box-shadow: rgb(255, 255, 255) 0px 20px 30px -10px;
-        width: 50rem;
+        width: 100%;
         max-height:35rem;
         overflow-y: auto;
         background-color: white;
         padding: 1rem;
         border-radius: 1em;
-        
         .task{
           display: flex;
           justify-content: space-between;
+          flex-direction: row;
           align-items: center;
           padding: 2rem;
           height: 3rem;
@@ -201,8 +268,37 @@ $s: 340px;
           border-radius: 2rem;
           color: white;
           margin-bottom: 1rem;
+          @media screen and (max-width:$m){
+            flex-direction: column;
+            padding-top:0.5rem;
+            height: 4.3rem;
+          }
+          @media screen and (max-width:$s){
+            flex-direction: column;
+            padding-top:0.5rem;
+            height: 4.6rem;
+          }
+          
           .task-title{
-            font-size: 2rem;
+            font-size: 2.5rem;
+            
+            @media screen and (max-width:$xxl){
+              font-size: 2rem;
+            }
+            @media screen and (max-width:$xl){
+              font-size: 1.7rem;
+            }
+            @media screen and (max-width:$l){
+              font-size: 1.5rem;
+            }
+            @media screen and (max-width:$m){
+              font-size: 1.2rem;
+              margin-bottom:0.1rem ;
+            }
+            @media screen and (max-width:$s){
+              font-size: 1rem;
+              
+            }
           }
           .task-icons{
             display: flex;
@@ -231,12 +327,20 @@ $s: 340px;
                 background-color: #c8d6e5;
                 color: black;
                 box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+                @media screen and (max-width:$m) {
+                  left: 30px;
+                }
+                @media screen and (max-width:$xs) {
+                  top: 30px;
+                  left: 10px;
+                }
               }
               &:hover{
                 .tooltip-Text{
                   visibility: visible;
                 }
               }
+              
             }
           }
         }
@@ -252,6 +356,12 @@ $s: 340px;
         transform: translate(-50%, -50%);
         background-color:white;
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+        @media screen and (max-width:$undermsize) {
+          width: 16em; 
+        }
+        @media screen and (max-width:$s) {
+          width: 14em; 
+        }
         .header{
           display: flex;
           justify-content: space-between;
@@ -288,6 +398,9 @@ $s: 340px;
              outline: none;
              box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
            } 
+           @media screen and (max-width:$xs) {
+              width:10rem;
+            }
           }
           .change-button{
             height: 2rem;
@@ -300,6 +413,9 @@ $s: 340px;
             &:hover{
               background-color: $main-color3;
               transition: 0.8s ease-in-out;
+            }
+            @media screen and (max-width:$xs) {
+              width:7rem;
             }
           }
 

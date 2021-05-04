@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { stateType } from '../Utils/global'
 import { motion } from "framer-motion";
